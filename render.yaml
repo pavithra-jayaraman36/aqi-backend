@@ -2,10 +2,9 @@ services:
   - type: web
     name: aqi-backend
     env: python
-    plan: free
-    buildCommand: "pip install -r requirements.txt && python train_model.py"
-    startCommand: "gunicorn app:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 120"
-    healthCheckPath: /health
+    region: singapore
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port 10000
     envVars:
       - key: PYTHON_VERSION
-        value: 3.12.3
+        value: 3.11.9
